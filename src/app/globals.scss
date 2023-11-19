@@ -1,0 +1,98 @@
+*{
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+// ======= ESTILIZAÇÃO MENU ========
+
+.nav{
+  background-color: rgb(76,109,252);
+  width: fill;
+  height: 150px;
+  padding: 50px;
+  padding-right: 70px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  
+  .itemNav{
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+  
+    &:hover{
+      text-decoration: underline 2px white;
+      cursor: pointer;
+    }
+
+  }
+  
+  .dropdown{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: fit-content;
+    margin-top: 10px;
+  }
+
+  .info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 50px;
+    background-color: rgb(76,109,252);
+    color: white;
+    border: 2px solid white;
+    text-decoration: none;
+
+    &:hover{
+      text-decoration: underline 2px white;
+    }
+  }
+
+}
+
+// ======= ESTILIZAÇÃO FOOTER ========
+
+footer{
+  background-color: rgb(76,109,252);
+  height: 300px;
+  width: fill;
+  display: flex;
+  flex-direction: row;
+}
+
+.empresas{
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .empresalogo1{
+    
+  }
+}
+
+.divisao{
+  width: 3px;
+  height: 80%;
+  margin-top: 30px;
+  margin-left: 10%;
+  margin-right: 10%;
+  background-color: white;
+}
+
+.textofooter{
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

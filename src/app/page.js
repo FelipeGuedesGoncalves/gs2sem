@@ -1,7 +1,8 @@
+import '../app/Home.scss';
 
 export default function Home() {
   return (
-    <main>
+    <main className='mainHome'>
     </main>
   )
 }
