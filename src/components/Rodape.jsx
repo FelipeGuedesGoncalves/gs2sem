@@ -7,10 +7,10 @@ export default function Rodape() {
             <div className="empresas">
                 <p className="apoiado">Projeto sugerido e apoiado por:</p>
                 <Image
-                    classNameName='empresalogo1'
+                    className='empresalogo1'
                     src="/empresalogos.png"
-                    width={200}
-                    height={70}
+                    width={425}
+                    height={165}
                     alt="BabyCare"
                 />
 
@@ -18,11 +18,13 @@ export default function Rodape() {
             <div className="divisao"></div>
             <div className="textofooter">
                 <p>INTEGRANTES DO GRUPO</p>
-                <p>(Nina Rebello francisco - RM: 99509)
-                    (Camila dos Santos Cunha - RM: 551785)
-                    (Guilherme Rodrigues de Castro - RM: 99624)
-                    (Luiz Fellipe Soares de Sousa Lucena - RM: 551365)
+                <br />
+                <p>(Nina Rebello francisco - RM: 99509) <br />
+                    (Camila dos Santos Cunha - RM: 551785) <br />
+                    (Guilherme Rodrigues de Castro - RM: 99624) <br />
+                    (Luiz Fellipe Soares de Sousa Lucena - RM: 551365) <br />
                     (Felipe Guedes Gonçalves - RM: 550906)</p>
+                    <br />
                 <p>© 2023 Hunzer. Todos os direitos reservados. Junte-se a nós na luta contra a fome e pela agricultura
                     sustentável.</p>
             </div>
