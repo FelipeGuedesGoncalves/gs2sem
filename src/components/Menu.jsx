@@ -46,7 +46,7 @@ export default function Menu() {
               <Link className="info" href="/Prenatal">Cuidados Pré-natais</Link>
             </li>
             <li>
-              <Link className="info" href="/Materno">Saúde Materna</Link>
+              <Link className="info" href="/Materno">Cuidados Maternos</Link>
             </li>
             <li>
               <Link className="info" href="/Nutri">Nutrição Infantil</Link>

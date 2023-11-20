@@ -1,0 +1,115 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+  }
+
+  .maininfo{
+    min-height: 100vh;
+    max-height: fit-content;
+    width: fill;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 100px;
+
+
+    h1{
+        color: rgb(76,109,252);
+        font-size: 46px;
+        margin: 50px;
+    }
+    
+    p{
+        color: rgb(0, 0, 0);
+        font-size: 18px;
+        word-spacing: 3px;
+        font-weight: 300;
+        width: 75%;
+        text-align: justify;
+    }
+
+    li{
+        color: rgb(0, 0, 0);
+        font-size: 18px;
+        word-spacing: 3px;
+        font-weight: 300;
+        text-align: justify;
+        margin-bottom: 20px;
+    }
+
+    ul{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        list-style: none;
+        width: 75%;
+    }
+    
+    .infofoto{
+        min-width: 360px;
+        width: 43vw;
+        min-height: 210px;
+        height: 25.33vw;
+        margin: 80px;
+    }
+    
+    h2{
+        color: rgb(76,109,252);
+        font-size: 30px;
+        width: 75%;
+        margin-bottom: 30px;
+        margin-top: 30px;
+    }
+
+    // ==== tabela ====
+
+    table{
+        width: 75%;
+        color: white;
+    }
+
+    
+    thead{
+        background-color: rgb(76,109,252);
+        height: 50px;
+    }
+    
+    th{
+        height: 50px;
+        padding: 25px;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    td{
+        height: 50px;
+        padding: 25px;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background-color: rgb(141, 162, 255);
+    }
+    
+    .coluna1{
+        width: 20%;
+    }
+    
+    .coluna2{
+        width: 20%;
+    }
+    
+    .coluna3{
+        width: fill;
+        text-align:justify;
+    }
+    
+    .conteudo{
+        padding: 25px;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+}
