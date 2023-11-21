@@ -5,7 +5,7 @@
 }
 // ======= ESTILIZAÇÃO MENU ========
 
-.nav{
+#nav{
   background-color: rgb(76,109,252);
   width: fill;
   height: 150px;
@@ -108,4 +108,86 @@ footer{
   text-align: center;
   margin-right: 10%;
   font-size: 17px;
+}
+
+// ===== LOGIN =====
+
+.bloqueio{
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(82, 82, 82, 0.5);
+  top: 00px;
+  left: 0;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.login{
+  position: fixed;
+  width: 400px;
+  height: 600px;
+  background-color: rgb(76,109,252);
+  top: 100px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  .fechar{
+    background-color: rgb(76,109,252);
+    border: 0;
+    font-size: 30px;
+    color: white;
+    margin-left: 340px;
+    &:hover{
+      cursor: pointer;
+    }    
+  }
+
+  .inputlogin{
+    height: 60px;
+    width: 70%;
+    padding: 20px;
+    border-radius: 10px;
+    border: 0;
+  }
+
+  .entrar{
+    height: 60px;
+    width: 70%;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid white;
+    font-weight: 700;
+    color: rgb(76,109,252);
+    transition: 0.2s ease;
+    font-size: 15px;
+    &:hover{
+      cursor: pointer;
+      color: white;
+      background-color: rgb(76,109,252);
+    }
+  }
+
+  .cadastre{
+    height: 60px;
+    width: 70%;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid white;
+    font-weight: 700;
+    color: rgb(76,109,252);
+    transition: 0.2s ease;
+    font-size: 15px;
+    margin-bottom: 40px;
+    &:hover{
+      cursor: pointer;
+      color: white;
+      background-color: rgb(76,109,252);
+    }
+  }
 }

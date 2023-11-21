@@ -4,6 +4,11 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import '../app/globals.scss';
+import { Outfit } from "next/font/google";
+const outfit = Outfit({
+  subsets: ['latin'],
+  weight: ['100', '300', '500', '700', '900']
+});
 
 export default function Menu() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -28,7 +33,7 @@ export default function Menu() {
   };
 
   return (
-    <nav className="nav">
+    <nav id='nav' className={outfit.className}>
       <Link className="homeLogoLink" href="/">
         <Image
           src="/babycarelogowhite.png"
@@ -60,6 +65,26 @@ export default function Menu() {
       <Link className="itemNav" href="/Doacao">Doação</Link>
       <Link className="itemNav" href="/Chat">Assistência Médica</Link>
       <Link className="itemNav" href="/Login">Entrar</Link>
+
+      <div className="bloqueio">
+        <div className="login">
+          <button className='fechar'>x</button>
+          <p className='logintext'>Seja Bem-Vindo(a) ao</p>
+          <Image
+            src="/babycarelogowhite.png"
+            width={200}
+            height={80}
+            alt="BabyCare"
+          />
+          <input className='inputlogin' type="text" placeholder='Email' />
+          <input className='inputlogin' type="text" placeholder='Senha' />
+          <button className='entrar'>Entrar</button>
+          <p className='logintext'>ou</p>
+          <button className='cadastre'>Cadastrar-se</button>
+        </div>
+      </div>
+
     </nav>
+
   );
 }
