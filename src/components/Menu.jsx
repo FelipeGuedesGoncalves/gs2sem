@@ -12,6 +12,9 @@ const outfit = Outfit({
 
 export default function Menu() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isLoginOpen, setLoginOpen] = useState(false);
+  const [isCadastroOpen, setCadastroOpen] = useState(false);
+
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -30,6 +33,21 @@ export default function Menu() {
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const enableLogin = () => {
+    setLoginOpen(true);
+    setCadastroOpen(false);
+  };
+
+  const enableCadastro = () => {
+    setCadastroOpen(true);
+    setLoginOpen(false);
+  };
+
+  const closeModal = () => {
+    setLoginOpen(false);
+    setCadastroOpen(false);
   };
 
   return (
@@ -64,27 +82,56 @@ export default function Menu() {
       </div>
       <Link className="itemNav" href="/Doacao">Doação</Link>
       <Link className="itemNav" href="/Chat">Assistência Médica</Link>
-      <Link className="itemNav" href="/Login">Entrar</Link>
+      <button className="itemNav" onClick={enableLogin}>Entrar</button>
 
-      <div className="bloqueio">
-        <div className="login">
-          <button className='fechar'>x</button>
-          <p className='logintext'>Seja Bem-Vindo(a) ao</p>
-          <Image
-            src="/babycarelogowhite.png"
-            width={200}
-            height={80}
-            alt="BabyCare"
-          />
-          <input className='inputlogin' type="text" placeholder='Email' />
-          <input className='inputlogin' type="text" placeholder='Senha' />
-          <button className='entrar'>Entrar</button>
-          <p className='logintext'>ou</p>
-          <button className='cadastre'>Cadastrar-se</button>
-        </div>
+      <div className="bloqueio" style={{ display: isLoginOpen || isCadastroOpen ? 'flex' : 'none' }}>
+
+        {/* ===== LOGIN ===== */}
+        {isLoginOpen && (
+          <div className="login">
+            <button className='fechar' onClick={closeModal}>x</button>
+            <p className='logintext'>Seja Bem-Vindo(a) ao</p>
+            <Image
+              src="/babycarelogowhite.png"
+              width={200}
+              height={80}
+              alt="BabyCare"
+            />
+            <form className='formlogin' action="">
+              <input className='inputlogin' type="email" id="email" name="email" placeholder='Email' required />
+              <input className='inputlogin' type="password" id="senha" name="senha" placeholder='Senha' required />
+              <button className='entrar' type='submit'>Entrar</button>
+            </form>
+            <p className='logintext'>ou</p>
+            <button className='cadastre' onClick={enableCadastro}>Cadastrar-se</button>
+          </div>
+        )}
+
+        {/* ===== CADASTRO ===== */}
+        {isCadastroOpen && (
+          <div className="cadastro">
+            <button className='fechar' onClick={closeModal}>x</button>
+            <p className='cadastrotext'>Cadastre-se no</p>
+            <Image
+              src="/babycarelogowhite.png"
+              width={200}
+              height={80}
+              alt="BabyCare"
+            />
+            <form className='formcadastro' action="">
+              <input className='inputcadastro' type="name" id="nome" name="nome" placeholder='Nome' required />
+              <input className='inputcadastro' type="email" id="email" name="email" placeholder='Email' required />
+              <input className='inputcadastro' type="password" id="senha" name="senha" placeholder='Senha' required />
+              <input className='inputcadastro' type="tel" id="telefone" name="telefone" placeholder='Tel.' required />
+              <input className='inputcadastro' type="number" id="cpf" name="cpf" placeholder='CPF' required />
+              <button className='cadastre' type='submit'>Cadastrar-se</button>
+            </form>
+            <p className='cadastrotext'>ou</p>
+            <button className='entrar' onClick={enableLogin}>Entrar</button>
+          </div>
+        )}
+
       </div>
-
     </nav>
-
   );
 }
