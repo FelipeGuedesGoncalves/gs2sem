@@ -55,9 +55,15 @@
       "formaPagamento": "boleto",
       "valor": "1523",
       "id": 7
+    },
+    {
+      "nome": "Alex",
+      "email": "rm550906@fiap.com.br",
+      "telefone": "1199003289",
+      "formaPagamento": "cartao",
+      "valor": "2",
+      "id": 8
     }
   ],
-  "clientes": [
-
-  ]
+  "clientes": []
 }
