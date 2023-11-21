@@ -11,6 +11,9 @@ const outfit = Outfit({
 });
 
 export default function Menu() {
+  // ===== LÓGICA PARA DROPDOWN DO "INFORMAÇÕES PRECIOSAS" =====
+
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isLoginOpen, setLoginOpen] = useState(false);
   const [isCadastroOpen, setCadastroOpen] = useState(false);
@@ -18,10 +21,6 @@ export default function Menu() {
   const dropdownRef = useRef(null);
 
   useEffect(() => {
-
-
-    // ===== LÓGICA PARA DROPDOWN DO "INFORMAÇÕES PRECIOSAS" =====
-
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsDropdownOpen(false);
