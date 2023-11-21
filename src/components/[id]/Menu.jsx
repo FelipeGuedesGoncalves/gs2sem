@@ -1,4 +1,4 @@
-'use client';
+"use client"
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
@@ -18,12 +18,16 @@ export default function Menu() {
   const dropdownRef = useRef(null);
 
   useEffect(() => {
+
+
+    // ===== LÓGICA PARA DROPDOWN DO "INFORMAÇÕES PRECIOSAS" =====
+
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsDropdownOpen(false);
       }
     };
-
+  
     document.addEventListener('mousedown', handleClickOutside);
 
     return () => {
@@ -34,6 +38,10 @@ export default function Menu() {
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+
+
+
+  // ===== LÓGICA PARA HABILITAR LOGIN E CADASTRO =====
 
   const enableLogin = () => {
     setLoginOpen(true);
@@ -50,8 +58,12 @@ export default function Menu() {
     setCadastroOpen(false);
   };
 
+
+  // ===== LÓGICA PARA CADASTRAR CLIENTE =====
+
   return (
     <nav id='nav' className={outfit.className}>
+
       <Link className="homeLogoLink" href="/">
         <Image
           src="/babycarelogowhite.png"
@@ -60,7 +72,10 @@ export default function Menu() {
           alt="BabyCare"
         />
       </Link>
+
       <Link className="itemNav" href='/'>Página Inicial</Link>
+
+
       <div className="itemNav" onClick={toggleDropdown} ref={dropdownRef}>
         Informações Preciosas
         {isDropdownOpen && (
@@ -80,13 +95,20 @@ export default function Menu() {
           </ul>
         )}
       </div>
-      <Link className="itemNav" href="/Doacao">Doação</Link>
+
+      <Link className="itemNav" href={'/Doacao/0'}>Doação</Link>
+
       <Link className="itemNav" href="/Chat">Assistência Médica</Link>
+
+
       <button className="itemNav" onClick={enableLogin}>Entrar</button>
 
       <div className="bloqueio" style={{ display: isLoginOpen || isCadastroOpen ? 'flex' : 'none' }}>
 
+
+
         {/* ===== LOGIN ===== */}
+
         {isLoginOpen && (
           <div className="login">
             <button className='fechar' onClick={closeModal}>x</button>
@@ -107,7 +129,10 @@ export default function Menu() {
           </div>
         )}
 
+
+
         {/* ===== CADASTRO ===== */}
+        
         {isCadastroOpen && (
           <div className="cadastro">
             <button className='fechar' onClick={closeModal}>x</button>

@@ -1,4 +1,4 @@
-import Menu from "@/components/Menu"
+import Menu from "@/components/[id]/Menu"
 import Rodape from "@/components/Rodape"
 import { Outfit } from "next/font/google";
 const outfit = Outfit({
