@@ -18,7 +18,7 @@ export default function Home() {
       {/* ===== HEADER ===== */}
 
       <header>
-        <div className="conteudoDiv">className={philo.className}
+        <div id='conteudoDiv' className={philo.className}>
           <p id='bemvindo' >
             Bem-vindo ao BabyCare: Sua Jornada Materna, Nosso Cuidado Exclusivo ;)
           </p>
