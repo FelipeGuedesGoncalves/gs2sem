@@ -8,6 +8,7 @@ export default function Cadastro({params}) {
     const formId = params.id == 0 ? '' : params.id
 
     const [novo, setNovo] = useState({
+        
         nm_completo:'',
         email:'',
         senha:'',

@@ -13,10 +13,10 @@ export default function Doacao({ params }) {
     const formId = params.id == 0 ? '' : params.id
 
     const [novo, setNovo] = useState({
-        nome: '',
+        nome_completo: '',
         email: '',
         telefone: '',
-        formaPagamento: 'cartao',
+        forma_pagamento: 'cartao',
         valor: ''
     });
 
@@ -64,12 +64,12 @@ export default function Doacao({ params }) {
             <h2 className={philo.className}>Qualquer quantia é mais que bem-vinda</h2>
 
             <form className="formDoar" onSubmit={handleSubmit}>
-                <label htmlFor="nome">Nome Completo:</label>
+                <label htmlFor="nome_completo">Nome Completo:</label>
                 <input
                     type="text"
-                    id="nome"
-                    name="nome"
-                    value={novo.nome}
+                    id="nome_completo"
+                    name="nome_completo"
+                    value={novo.nome_completo}
                     onChange={handleChange}
                     required
                 />
@@ -94,11 +94,11 @@ export default function Doacao({ params }) {
                     required
                 />
 
-                <label htmlFor="formaPagamento">Forma de Pagamento:</label>
+                <label htmlFor="forma_pagamento">Forma de Pagamento:</label>
                 <select
-                    id="formaPagamento"
-                    name="formaPagamento"
-                    value={novo.formaPagamento}
+                    id="forma_pagamento"
+                    name="forma_pagamento"
+                    value={novo.forma_pagamento}
                     onChange={handleChange}
                     required
                 >
