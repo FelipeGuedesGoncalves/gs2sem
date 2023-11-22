@@ -12,6 +12,15 @@ const outfit = Outfit({
 
 export default function Menu() {
 
+  // ===== LÓGICA PARA LOGIN =====
+
+  const [user, setUser] = useState('')
+
+  useEffect(()=>{
+    setUser(JSON.parse(sessionStorage.getItem('login')))
+  },[])
+
+
   // ===== LÓGICA PARA DROPDOWN DO "INFORMAÇÕES PRECIOSAS" =====
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -75,7 +84,7 @@ export default function Menu() {
 
       <Link className="itemNav" href="/Chat">Assistência Médica</Link>
 
-      <Link className="itemNav" href="/Login">Entrar</Link>
+      <Link className="itemNav" href={user ? '/Perfil' : '/Login'}>{user ? "Meu Perfil" : 'Entrar'}</Link><br/>
     </nav>
   );
 }

@@ -1,6 +1,7 @@
 "use client"
 // ======= IMPORTAÇÕES E ESTILO DO COMPONENTE =======
 
+import Link from "next/link"
 import React, { useState, useEffect } from 'react';
 import './Perfil.scss';
 import { Philosopher } from "next/font/google";
@@ -9,7 +10,24 @@ const philo = Philosopher({
     weight: ['400', '700']
 });
 
+const login = JSON.parse(sessionStorage.getItem("login")) 
+
 export default function Perfil() {
+
+    if(!login) window.location = "/"
+
+    const [user, setUser] = useState('')
+
+    useEffect(()=>{
+      setUser(JSON.parse(sessionStorage.getItem('login')))
+    },[])
+  
+    const deslogar = ()=> {
+      sessionStorage.removeItem("login")
+      window.location = "/"
+      setUser("")
+    }
+
     const [perfilData, setPerfilData] = useState({
         nm_completo: '',
         telefone: '',
@@ -88,6 +106,7 @@ export default function Perfil() {
     return (
         <main className='mainPerfil'>
             <h1 id="h1Perfil" className={philo.className}>Meu Perfil</h1>
+            <button onClick={deslogar}>Deslogar</button>
 
             <section className="perfil">
                 <div className="fotoPerfil">
