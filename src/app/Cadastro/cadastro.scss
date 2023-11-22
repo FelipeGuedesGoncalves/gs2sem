@@ -1,32 +1,34 @@
-.cadastro{
-    width: 600px;
-    height: 800px;
-    background-color: rgb(76,109,252);
-    top: 60px;
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+  }
+
+
+// ===== CADASTRO =====
+
+.mainCadastro{
+    width: 100%;
+    min-height: 130vh;
+    max-height: fit-content;
+    background-image: url(/gravidanocampo.jpg);
+    background-repeat: 0;
+    background-position: center;
+    box-shadow: inset 0px -200px 300px 200px rgb(76,109,252);
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-  
-    .fechar{
-      background-color: rgb(76,109,252);
-      border: 0;
-      font-size: 30px;
-      color: white;
-      margin-left: 550px;
-      &:hover{
-        cursor: pointer;
-      }    
-    }
+    padding: 100px;
   
     .formcadastro{
       width: 100%;
-      height: 450px;
+      height: 550px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
+      justify-content: space-around;
     }
   
     .inputcadastro{
@@ -38,21 +40,26 @@
     }
   
     .entrar{
-      height: 60px;
-      width: 70%;
-      padding: 20px;
-      border-radius: 10px;
-      border: 2px solid white;
-      font-weight: 700;
-      color: rgb(76,109,252);
-      transition: 0.2s ease;
-      font-size: 15px;
-      margin-bottom:40px;
-      &:hover{
-        cursor: pointer;
-        color: white;
-        background-color: rgb(76,109,252);
-      }
+        height: 60px;
+        width: 70%;
+        padding: 20px;
+        border-radius: 10px;
+        border: 2px solid white;
+        background-color: white;
+        font-weight: 700;
+        color: rgb(76,109,252);
+        transition: 0.2s ease;
+        font-size: 15px;
+        margin-bottom: 40px;
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &:hover{
+          cursor: pointer;
+          color: white;
+          background-color: rgb(76,109,252);
+        }
     }
   
     .cadastre{
@@ -61,10 +68,15 @@
       padding: 20px;
       border-radius: 10px;
       border: 2px solid white;
+      background-color: white;
       font-weight: 700;
       color: rgb(76,109,252);
       transition: 0.2s ease;
       font-size: 15px;
+      text-decoration: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       &:hover{
         cursor: pointer;
         color: white;
@@ -72,3 +84,4 @@
       }
     }
   }
+  

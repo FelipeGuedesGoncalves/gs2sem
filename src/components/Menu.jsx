@@ -11,7 +11,7 @@ const outfit = Outfit({
 });
 
 export default function Menu() {
-  
+
   // ===== LÓGICA PARA DROPDOWN DO "INFORMAÇÕES PRECIOSAS" =====
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -75,8 +75,7 @@ export default function Menu() {
 
       <Link className="itemNav" href="/Chat">Assistência Médica</Link>
 
-
-      <button className="itemNav">Entrar</button>
+      <Link className="itemNav" href="/Login">Entrar</Link>
     </nav>
   );
 }
