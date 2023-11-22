@@ -75,7 +75,7 @@ export default function Menu() {
 
       <Link className="itemNav" href="/Chat">Assistência Médica</Link>
 
-      <Link className="itemNav" href="/Login">Entrar</Link>
+      <Link className="itemNav" href="/Perfil">Entrar</Link>
     </nav>
   );
 }

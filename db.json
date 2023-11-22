@@ -65,5 +65,15 @@
       "id": 8
     }
   ],
-  "clientes": []
+  "clientes": [
+    {
+      "nm_completo": "João",
+      "email": "felipeguedes4567@gmail.com",
+      "senha": "123",
+      "telefone": "1199003289",
+      "cpf": "22222222222",
+      "id": 1,
+      "imagemPerfil": "blob:http://localhost:3000/0d57e372-cd77-4a20-aa41-a7dce293b030"
+    }
+  ]
 }

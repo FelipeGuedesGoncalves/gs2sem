@@ -23,7 +23,7 @@ export default function Login() {
                 <button className='entrar' type='submit'>Entrar</button>
             </form>
             <p className='logintext'>ou</p>
-            <Link className="cadastre" href="/Cadastro">Cadastre-se</Link>
+            <Link className="cadastre" href={'/Cadastro/0'}>Cadastre-se</Link>
         </main>
     )
 }
