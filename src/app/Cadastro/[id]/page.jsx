@@ -59,7 +59,7 @@ export default function Cadastro({params}) {
                 <input onChange={handleChange} className='inputcadastro' type="number" id="cpf" name="cpf" placeholder='CPF' required />
                 <button className='cadastre' type='submit'>Cadastrar-se</button>
             </form>
-            <p className='cadastrotext'>ou</p>
+            <p className='oucadastro'>ou</p>
             <Link className="entrar" href="/Login">Entrar</Link>
         </main>
     )

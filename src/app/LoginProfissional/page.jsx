@@ -59,7 +59,7 @@ export default function Login() {
                 <button className='entrar' type='submit'>Entrar</button>
             </form>
             <p className='logintext'>ou</p>
-            <Link className="cadastre" href="/login">Voltar</Link>
+            <Link className="cadastre" href="/Login">Voltar</Link>
         </main>
     );
 }

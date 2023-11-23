@@ -103,7 +103,7 @@ export default function Menu() {
         // Se houver loginprof na sessionStorage, mostrar apenas Assistência Médica
         <>
           <Link className="itemNav" href="/Chat">Assistência Médica</Link>
-          <button className='itemNav' onClick={deslogar}>Deslogar</button>
+          <button className='itemNav' onClick={deslogar}>Sair</button>
         </>
       ) : (
         // Se não houver loginprof, mostrar as opções padrão

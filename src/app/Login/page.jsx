@@ -58,9 +58,9 @@ export default function Login() {
                 <input onChange={handleChange} className='inputlogin' value={login.senha} type="password" id="senha" name="senha" placeholder='Senha' required />
                 <button className='entrar' type='submit'>Entrar</button>
             </form>
-            <p className='logintext'>ou</p>
+            <p>ou</p>
             <Link className="cadastre" href={'/Cadastro/0'}>Cadastre-se</Link>
-            <p className='logintext'>ou</p>
+            <p className='ou'>ou</p>
             <Link className="cadastre" href="/LoginProfissional">Entrar como Profissional</Link>
         </main>
     );

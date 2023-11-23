@@ -9,7 +9,7 @@
 
 .mainLogin{
     width: 100%;
-    min-height: 80vh;
+    min-height: 100vh;
     max-height: fit-content;
     background-image: url(/gravidanocampo.jpg);
     background-repeat: 0;
@@ -87,6 +87,14 @@
         color: white;
         background-color: rgb(76,109,252);
       }
+    }
+
+    .logintext{
+      margin: 50px;
+    }
+    
+    .ou{
+      margin-top: 60px;
     }
   }
   
