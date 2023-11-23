@@ -16,7 +16,8 @@
       "senha": "@2004$2013#",
       "telefone": "1199003289",
       "cpf": "22222222222",
-      "id": 1
+      "id": 1,
+      "imagemPerfil": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAADElEQVQImWP4L28KAAN0AVQxdyWPAAAAAElFTkSuQmCC"
     },
     {
       "nm_completo": "João Paiva",
@@ -25,6 +26,23 @@
       "telefone": "422134",
       "cpf": "22222222222",
       "id": 2
+    },
+    {
+      "nm_completo": "Maria",
+      "email": "joaoteste@gmail.com",
+      "senha": "444",
+      "telefone": "123123123123",
+      "cpf": "33331",
+      "id": 3,
+      "imagemPerfil": "blob:http://localhost:3000/db5c1882-0b75-4a96-a5f0-f0a68a3afaaa"
+    },
+    {
+      "nm_completo": "olaf",
+      "email": "olaf@gmail.com",
+      "senha": "12",
+      "telefone": "123",
+      "cpf": "3123",
+      "id": 4
     }
   ]
 }

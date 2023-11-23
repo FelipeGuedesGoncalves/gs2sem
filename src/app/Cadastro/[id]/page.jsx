@@ -17,7 +17,6 @@ export default function Cadastro({params}) {
     })
 
     let metodo = 'post'
-    if(formId) metodo = 'put'
 
     const handleChange = e => {
         setNovo({...novo, [e.target.name]:e.target.value})

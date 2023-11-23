@@ -78,9 +78,20 @@ export default function Perfil({ params }) {
     };
 
     const handleImagemChange = (event) => {
-        const novaImagem = URL.createObjectURL(event.target.files[0]);
-        setPerfilData({ ...perfilData, imagemPerfil: novaImagem });
+        const file = event.target.files[0];
+    
+        if (file) {
+            const reader = new FileReader();
+    
+            reader.onloadend = () => {
+                const base64Image = reader.result;
+                setPerfilData({ ...perfilData, imagemPerfil: base64Image });
+            };
+    
+            reader.readAsDataURL(file);
+        }
     };
+    
 
     const handleBloquearInputs = () => {
         setInputsBloqueados(true);
