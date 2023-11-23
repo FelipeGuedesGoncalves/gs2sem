@@ -12,7 +12,6 @@ const outfit = Outfit({
 
 export default function Menu() {
   // ===== LÓGICA PARA ID DO CLIENTE =====
-
   const [clientes, setClientes] = useState([]);
 
   useEffect(() => {
@@ -25,20 +24,27 @@ export default function Menu() {
       .catch(error => console.error(error));
   }, []);
 
-  // ===== LÓGICA PARA LOGIN =====
-  
+  // ===== LÓGICA PARA LOGIN DE USUÁRIO =====
   const [user, setUser] = useState('')
-  
   useEffect(()=>{
     setUser(JSON.parse(sessionStorage.getItem('login')))
   },[])
-  
-  const usuario = clientes.length > 0 ? clientes[0] : null;
+  const usuario = user ? clientes.find(cliente => cliente.email === user.email && cliente.senha === user.senha) : null;
+
+  // ===== LÓGICA PARA LOGIN DE PROFISSIONAIS =====
+  const [profissional, setProfissional] = useState('');
+  useEffect(() => {
+    setProfissional(JSON.parse(sessionStorage.getItem('loginprof')));
+  }, []);
+
+  const deslogar = ()=> {
+    sessionStorage.removeItem("loginprof")
+    window.location = "/"
+    setUser("")
+  }
 
   // ===== LÓGICA PARA DROPDOWN DO "INFORMAÇÕES PRECIOSAS" =====
-
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -47,7 +53,7 @@ export default function Menu() {
         setIsDropdownOpen(false);
       }
     };
-  
+
     document.addEventListener('mousedown', handleClickOutside);
 
     return () => {
@@ -61,7 +67,6 @@ export default function Menu() {
 
   return (
     <nav id='nav' className={outfit.className}>
-
       <Link className="homeLogoLink" href="/">
         <Image
           src="/babycarelogowhite.png"
@@ -72,7 +77,6 @@ export default function Menu() {
       </Link>
 
       <Link className="itemNav" href='/'>Página Inicial</Link>
-
 
       <div className="itemNav" onClick={toggleDropdown} ref={dropdownRef}>
         Informações Preciosas
@@ -94,11 +98,21 @@ export default function Menu() {
         )}
       </div>
 
-      <Link className="itemNav" href={'/Doacao/0'}>Doação</Link>
-
-      <Link className="itemNav" href="/Chat">Assistência Médica</Link>
-      <Link className="itemNav" href={user ? `/Perfil/${usuario ? usuario.id : ''}` : '/Login'}>{user ? "Meu Perfil" : 'Entrar'}</Link>
-      
+      {/* Adicionando lógica para login de profissionais */}
+      {profissional ? (
+        // Se houver loginprof na sessionStorage, mostrar apenas Assistência Médica
+        <>
+          <Link className="itemNav" href="/Chat">Assistência Médica</Link>
+          <button className='itemNav' onClick={deslogar}>Deslogar</button>
+        </>
+      ) : (
+        // Se não houver loginprof, mostrar as opções padrão
+        <>
+          <Link className="itemNav" href={'/Doacao/0'}>Doação</Link>
+          <Link className="itemNav" href="/Chat">Assistência Médica</Link>
+          <Link className="itemNav" href={user ? `/Perfil/${usuario ? usuario.id : ''}` : '/Login'}>{user ? "Meu Perfil" : 'Entrar'}</Link>
+        </>
+      )}
     </nav>
   );
 }

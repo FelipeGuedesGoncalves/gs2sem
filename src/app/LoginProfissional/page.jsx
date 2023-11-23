@@ -1,6 +1,6 @@
 "use client"
 
-import './Login.scss';
+import './LoginPro.scss';
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,16 +13,16 @@ const philo = Philosopher({
 });
 
 export default function Login() {
-    const [login, setLogin] = useState({ email:"", senha:"" });
-    const [clientes, setClientes] = useState([]);
+    const [login, setLogin] = useState({ rm_profissional:"", senha:"" });
+    const [profissionais, setProfissionais] = useState([]);
 
     useEffect(() => {
-        // Simula a busca de clientes do servidor
-        fetch(`http://localhost:3001/clientes`, {
+        // Simula a busca de profissionais do servidor
+        fetch(`http://localhost:3001/profissionais`, {
             method: 'GET',
         })
         .then(resp => resp.json())
-        .then(resp => setClientes(resp))
+        .then(resp => setProfissionais(resp))
         .catch(error => console.error(error));
     }, []);
 
@@ -31,16 +31,16 @@ export default function Login() {
     const handleSubmit = e => {
         e.preventDefault();
 
-        // Verifica se há algum cliente com o email e senha fornecidos
-        const clienteEncontrado = clientes.find(cliente => cliente.email === login.email && cliente.senha === login.senha);
+        // Verifica se há algum profissional com o rm_profissional e senha fornecidos
+        const profissionalEncontrado = profissionais.find(profissional => profissional.rm_profissional === login.rm_profissional && profissional.senha === login.senha);
 
-        if (clienteEncontrado) {
-            // Armazena todas as informações do cliente na sessionStorage
-            sessionStorage.setItem("login", JSON.stringify(clienteEncontrado));
-            // Redireciona para a página de perfil com o ID do cliente
-            window.location = `/Perfil/${clienteEncontrado.id}`;
+        if (profissionalEncontrado) {
+            // Armazena todas as informações do profissional na sessionStorage
+            sessionStorage.setItem("loginprof", JSON.stringify(profissionalEncontrado));
+            // Redireciona para a página de chat com o ID do profissional
+            window.location = "/Chat";
         } else {
-            alert("Email ou senha incorretos. Tente novamente.");
+            alert("RM profissional ou senha incorretos. Tente novamente.");
         }
     };
 
@@ -54,14 +54,12 @@ export default function Login() {
                 alt="BabyCare"
             />
             <form className='formlogin' onSubmit={handleSubmit}>
-                <input onChange={handleChange} className='inputlogin' value={login.email} type="email" id="email" name="email" placeholder='Email' required />
+                <input onChange={handleChange} className='inputlogin' value={login.rm_profissional} type="text" id="rm_profissional" name="rm_profissional" placeholder='RM proficional' required />
                 <input onChange={handleChange} className='inputlogin' value={login.senha} type="password" id="senha" name="senha" placeholder='Senha' required />
                 <button className='entrar' type='submit'>Entrar</button>
             </form>
             <p className='logintext'>ou</p>
-            <Link className="cadastre" href={'/Cadastro/0'}>Cadastre-se</Link>
-            <p className='logintext'>ou</p>
-            <Link className="cadastre" href="/LoginProfissional">Entrar como Profissional</Link>
+            <Link className="cadastre" href="/login">Voltar</Link>
         </main>
     );
 }
