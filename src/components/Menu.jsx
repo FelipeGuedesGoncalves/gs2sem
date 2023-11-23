@@ -11,15 +11,29 @@ const outfit = Outfit({
 });
 
 export default function Menu() {
+  // ===== LÓGICA PARA ID DO CLIENTE =====
+
+  const [clientes, setClientes] = useState([]);
+
+  useEffect(() => {
+    // Simula a busca de clientes do servidor
+    fetch(`http://localhost:3001/clientes`, {
+      method: 'GET',
+    })
+      .then(resp => resp.json())
+      .then(resp => setClientes(resp))
+      .catch(error => console.error(error));
+  }, []);
 
   // ===== LÓGICA PARA LOGIN =====
-
+  
   const [user, setUser] = useState('')
-
+  
   useEffect(()=>{
     setUser(JSON.parse(sessionStorage.getItem('login')))
   },[])
-
+  
+  const usuario = clientes.length > 0 ? clientes[0] : null;
 
   // ===== LÓGICA PARA DROPDOWN DO "INFORMAÇÕES PRECIOSAS" =====
 
@@ -83,8 +97,8 @@ export default function Menu() {
       <Link className="itemNav" href={'/Doacao/0'}>Doação</Link>
 
       <Link className="itemNav" href="/Chat">Assistência Médica</Link>
-
-      <Link className="itemNav" href={user ? '/Perfil' : '/Login'}>{user ? "Meu Perfil" : 'Entrar'}</Link><br/>
+      <Link className="itemNav" href={user ? `/Perfil/${usuario ? usuario.id : ''}` : '/Login'}>{user ? "Meu Perfil" : 'Entrar'}</Link>
+      
     </nav>
   );
 }

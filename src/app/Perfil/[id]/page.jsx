@@ -1,7 +1,6 @@
 "use client"
 // ======= IMPORTAÇÕES E ESTILO DO COMPONENTE =======
 
-import Link from "next/link"
 import React, { useState, useEffect } from 'react';
 import './Perfil.scss';
 import { Philosopher } from "next/font/google";
@@ -12,7 +11,7 @@ const philo = Philosopher({
 
 const login = JSON.parse(sessionStorage.getItem("login")) 
 
-export default function Perfil() {
+export default function Perfil({ params }) {
 
     if(!login) window.location = "/"
 
@@ -27,6 +26,10 @@ export default function Perfil() {
       window.location = "/"
       setUser("")
     }
+
+
+    const clienteId = params.id == 0 ? '' : params.id
+
 
     const [perfilData, setPerfilData] = useState({
         nm_completo: '',
@@ -43,27 +46,29 @@ export default function Perfil() {
     const [nm_completoExibido, setnm_completoExibido] = useState('Cliente BabyCare');
 
     useEffect(() => {
-        // Faz uma requisição GET para obter os dados do cliente do servidor
-        fetch('http://localhost:3001/clientes/1', {
-            method: 'GET',
-        })
-            .then(resp => resp.json())
-            .then(resp => {
-                // Verifica se a resposta está vazia
-                if (Object.keys(resp).length === 0) {
-                    // Se a resposta estiver vazia, define o nome exibido como 'Cliente BabyCare'
-                    setnm_completoExibido('Cliente BabyCare');
-                } else {
-                    // Se houver dados na resposta, atualiza o nome exibido e os dados do perfil
-                    setnm_completoExibido(resp.nm_completo);
-                    setPerfilData(resp);
-                }
+        if(clienteId){
+            // Faz uma requisição GET para obter os dados do cliente do servidor
+            fetch(`http://localhost:3001/clientes/${clienteId}`, {
+                method: 'GET',
             })
-            .catch(error => {
-                // Captura e registra qualquer erro ocorrido durante a requisição
-                console.error('Erro ao obter dados do cliente:', error);
-            });
-    }, []);
+                .then(resp => resp.json())
+                .then(resp => {
+                    // Verifica se a resposta está vazia
+                    if (Object.keys(resp).length === 0) {
+                        // Se a resposta estiver vazia, define o nome exibido como 'Cliente BabyCare'
+                        setnm_completoExibido('Cliente BabyCare');
+                    } else {
+                        // Se houver dados na resposta, atualiza o nome exibido e os dados do perfil
+                        setnm_completoExibido(resp.nm_completo);
+                        setPerfilData(resp);
+                    }
+                })
+                .catch(error => {
+                    // Captura e registra qualquer erro ocorrido durante a requisição
+                    console.error('Erro ao obter dados do cliente:', error);
+                });
+        }
+    }, [clienteId]);
 
 
     const handleInputChange = (event, campo) => {
@@ -86,7 +91,7 @@ export default function Perfil() {
     };
 
     const handleSalvar = () => {
-        fetch('http://localhost:3001/clientes/1', {
+        fetch(`http://localhost:3001/clientes/${clienteId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

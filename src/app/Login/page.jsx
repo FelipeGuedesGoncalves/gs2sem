@@ -1,10 +1,11 @@
 "use client"
 
 import './Login.scss';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Philosopher } from "next/font/google";
-import { useState } from 'react';
+import { useEffect } from 'react';
 
 const philo = Philosopher({
     subsets: ['latin'],
@@ -12,17 +13,37 @@ const philo = Philosopher({
 });
 
 export default function Login() {
+    const [login, setLogin] = useState({ email:"", senha:"" });
+    const [clientes, setClientes] = useState([]);
 
-    const [login, setLogin] = useState({ email:"", senha:"" })
+    useEffect(() => {
+        // Simula a busca de clientes do servidor
+        fetch(`http://localhost:3001/clientes`, {
+            method: 'GET',
+        })
+        .then(resp => resp.json())
+        .then(resp => setClientes(resp))
+        .catch(error => console.error(error));
+    }, []);
 
-    const handleChange = e=> setLogin({...login, [e.target.name]:e.target.value})
-    
-    const handleSubmit = e=>{
-        e.preventDefault()
-        sessionStorage.setItem("login", JSON.stringify(login))
-        window.location = "/Perfil"
-    }
-    
+    const handleChange = e => setLogin({...login, [e.target.name]: e.target.value});
+
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        // Verifica se há algum cliente com o email e senha fornecidos
+        const clienteEncontrado = clientes.find(cliente => cliente.email === login.email && cliente.senha === login.senha);
+
+        if (clienteEncontrado) {
+            // Armazena todas as informações do cliente na sessionStorage
+            sessionStorage.setItem("login", JSON.stringify(clienteEncontrado));
+            // Redireciona para a página de perfil com o ID do cliente
+            window.location = `/Perfil/${clienteEncontrado.id}`;
+        } else {
+            alert("Email ou senha incorretos. Tente novamente.");
+        }
+    };
+
     return (
         <main className='mainLogin'>
             <p className='logintext'>Seja Bem-Vindo(a) ao</p>
@@ -40,5 +61,5 @@ export default function Login() {
             <p className='logintext'>ou</p>
             <Link className="cadastre" href={'/Cadastro/0'}>Cadastre-se</Link>
         </main>
-    )
+    );
 }
