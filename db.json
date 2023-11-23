@@ -11,7 +11,7 @@
   ],
   "clientes": [
     {
-      "nm_completo": "Felipe Guedes",
+      "nm_completo": "João",
       "email": "felipeguedes4567@gmail.com",
       "senha": "@2004$2013#",
       "telefone": "1199003289",
@@ -43,6 +43,14 @@
       "telefone": "123",
       "cpf": "3123",
       "id": 4
+    },
+    {
+      "nm_completo": "Luis",
+      "email": "luis@gmail.com",
+      "senha": "123",
+      "telefone": "444444444444444",
+      "cpf": "-1",
+      "id": 5
     }
   ]
 }

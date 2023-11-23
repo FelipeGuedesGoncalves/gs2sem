@@ -122,7 +122,6 @@ export default function Perfil({ params }) {
     return (
         <main className='mainPerfil'>
             <h1 id="h1Perfil" className={philo.className}>Meu Perfil</h1>
-            <button onClick={deslogar}>Deslogar</button>
 
             <section className="perfil">
                 <div className="fotoPerfil">
@@ -199,6 +198,7 @@ export default function Perfil({ params }) {
                             required
                         />
                 </form>
+                <button className='btnPerfil deslogar' onClick={deslogar}>Deslogar</button>
             </section>
         </main>
     );
