@@ -2,33 +2,20 @@
 
 import './/ChatProf.scss';
 import { Philosopher } from "next/font/google";
-import Image from 'next/image';
 const philo = Philosopher({
     subsets: ['latin'],
     weight: ['400', '700']
 });
 
-// 1- a aplicação irá conferir os dados do profissional que estão cadastrados na session estorage
-
-// 2- após verificar os dados do profissional na session estorage, a constante irá verificar se no banco de dados existe uma sala com as mesmas informações do profissional na session estorage
-
-
-
-// 3- após confirmar que existe uma sala no banco de dados com as informações daquele profissional, a aplicação irá ler todas as mensagens presentes no array da key mensagens
-
-// 4 - preciso de uma constante que, pegue as mensagens anteriormente lidas e faça a distinção entre mensagens de cliente e mensagens de profissional da seguinte forma: toda mensagem que tiver id, conteúdo e email pertence a um cliente, logo, a div da mensagem na aplicação terá uma className="mensagemCliente" e apresentará o conteúdo da mensagem do cliente. E toda mensagem que tiver id, conteúdo e rm_profissional pertence a um profissional, logo, a div da mensagem na aplicação terá uma className="mensagemProfissional" e apresentará o conteúdo da mensagem do profissional
-
-// 5 - a ordem das mensagens na aplicação será feito com base no número da id, portanto se a mensagem tiver id 1 ela é a primeira mensagem, se tem id 2 é a segunda mensagem e assim por diante
-
-// 6 - posteriormente irei tratar sobre o envio de mensagens ao banco então por hora se preocupe em implementar o que eu pedi
-
 import { useEffect, useState } from 'react';
 
 export default function ChatProfissional({ params }) {
     const idSala = params.id == 0 ? '' : params.id
+    const idMensagem = params.id == 0 ? '' : params.id
     const [profissional, setProfissional] = useState({});
     const [sala, setSala] = useState({});
     const [mensagens, setMensagens] = useState([]);
+    const [novaMensagem, setNovaMensagem] = useState('');
 
     useEffect(() => {
         // Obter dados do profissional da sessionStorage
@@ -64,29 +51,59 @@ export default function ChatProfissional({ params }) {
             });
     }, []);
 
-    // Adicionando classe à mensagem com base no remetente
-    const renderizarMensagens = () => {
+    const handleEnviarMensagem = async () => {
+        try {
+          // Cria um objeto representando a nova mensagem
+          const novaMensagemObj = {
+            id: mensagens.length + 1, // Gera um ID único para a nova mensagem
+            conteudo: novaMensagem,
+            rm_profissional: profissional.rm_profissional,
+          };
+    
+          // Envia a nova mensagem para o backend usando o método POST
+          await fetch(`http://localhost:3001/salas/${idSala}/mensagens/${idMensagem}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(novaMensagemObj),
+          });
+    
+          // Recarrega a página para exibir a nova mensagem
+        } catch (error) {
+          console.error('Erro ao enviar mensagem:', error);
+        }
+      };
+    
+      const renderizarMensagens = () => {
         return mensagens.map((mensagem) => (
-            <div key={mensagem.id} className={`mensagem ${mensagem.email ? 'mensagemCliente' : 'mensagemProfissional'}`}>
-                {mensagem.conteudo}
-            </div>
+          <div
+            key={mensagem.id}
+            className={`mensagem ${mensagem.email ? 'mensagemCliente' : 'mensagemProfissional'}`}
+          >
+            {mensagem.conteudo}
+          </div>
         ));
-    };
-
-    return (
+      };
+    
+      return (
         <main className='mainChat'>
-            <h1 className={philo.className} id='titulo'>
-                Assistência Médica
-            </h1>
-
-            <div className='cliente'></div>
-            <div className='conversa'>
-                <div className='mensagens'>{renderizarMensagens()}</div>
-            </div>
-            <form className='enviarMensagem'>
-                <input className='escreverMsg' />
-                <button className='enviarmsg'>Enviar</button>
-            </form>
+          <h1 className={philo.className} id='titulo'>
+            Assistência Médica
+          </h1>
+    
+          <div className='cliente'></div>
+          <div className='conversa'>
+            <div className='mensagens'>{renderizarMensagens()}</div>
+          </div>
+          <form className='enviarMensagem'>
+            <input
+              className='escreverMsg'
+              value={novaMensagem}
+              onChange={(e) => setNovaMensagem(e.target.value)}
+            />
+            <button className='enviarmsg' onClick={handleEnviarMensagem}>
+              Enviar
+            </button>
+          </form>
         </main>
-    );
-}
+      );
+    }
