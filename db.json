@@ -28,13 +28,8 @@
       "mensagens": [
         {
           "id": 1,
-          "conteudo": "oi",
-          "email": "felipeguedes@gmail.com"
-        },
-        {
-          "id": 2,
-          "conteudo": "tarde",
-          "email": "felipeguedes@gmail.com"
+          "conteudo": "po",
+          "email": "rm550906@fiap.com.br"
         }
       ]
     }
@@ -48,6 +43,14 @@
       "cpf": "22222222222",
       "id": 1,
       "imagemPerfil": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAADElEQVQImWP4L28KAAN0AVQxdyWPAAAAAElFTkSuQmCC"
+    },
+    {
+      "nm_completo": "João Paiva",
+      "email": "rm550906@fiap.com.br",
+      "senha": "444",
+      "telefone": "1199003289",
+      "cpf": "22222222124",
+      "id": 2
     }
   ]
 }

@@ -19,36 +19,34 @@ export default function ChatCliente({ params }) {
   useEffect(() => {
     // Obter dados do cliente da sessionStorage
     const clienteData = JSON.parse(sessionStorage.getItem('login'));
-  
+
     if (!clienteData) {
       // Se não houver dados do cliente, você pode redirecionar ou tratar de acordo com seus requisitos
       console.error('Dados do cliente não encontrados na sessionStorage');
       return;
     }
     setCliente(clienteData);
-  
+
     // Consultar o banco de dados para encontrar uma sala com mensagens vazias
-    fetch(`http://localhost:3001/salas/${idSala}`, {
+    fetch(`http://localhost:3001/salas`, {
       method: 'GET',
     })
       .then((resp) => resp.json())
-      .then((sala) => {
-        // Verificar se a sala tem mensagens
-        if (sala.mensagens.length > 0) {
-          // Se a sala tiver mensagens, o cliente deve continuar nessa sala
-          setMensagens(sala.mensagens);
+      .then((salas) => {
+        // Verificar se há uma sala disponível para o cliente
+        const salaDisponivel = salas.find((sala) => sala.mensagens.length === 0);
+        if (salaDisponivel) {
+          setSala(salaDisponivel);
+          setMensagens(salaDisponivel.mensagens);
         } else {
-          // Se não houver mensagens, o cliente pode começar a enviar mensagens
-          console.log('Você pode começar a enviar mensagens.');
+          // Caso não encontre uma sala vazia, você pode lidar com isso de acordo com seus requisitos
+          console.error('Todos os profissionais estão ocupados no momento. Aguarde um instante.');
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
-  }, [idSala]);  // Adicionamos 'idSala' às dependências do useEffect
-  
-
-  
+  }, []);
 
   const handleEnviarMensagem = async (e) => {
     e.preventDefault();
@@ -59,36 +57,30 @@ export default function ChatCliente({ params }) {
         conteudo: novaMensagem,
         email: cliente.email,
       };
-  
+
       // Atualiza a variável localmente com a nova mensagem
       const mensagensAtualizadas = [...mensagens, novaMensagemObj];
       setMensagens(mensagensAtualizadas);
-  
-      // Obtém os dados originais da sala
-      const dadosOriginaisDaSala = await fetch(`http://localhost:3001/salas/${idSala}`, {
-        method: 'GET',
-      }).then(resp => resp.json());
-  
+
       // Adiciona as informações da sala e as mensagens atualizadas
       const dadosParaPut = {
-        ...dadosOriginaisDaSala,
+        ...sala,
         mensagens: mensagensAtualizadas,
       };
-  
+
       // Atualiza as mensagens no servidor usando o método PUT
-      await fetch(`http://localhost:3001/salas/${idSala}`, {
+      await fetch(`http://localhost:3001/salas/${sala.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(dadosParaPut),
       });
-  
+
       // Limpa a caixa de mensagem após o envio
       setNovaMensagem('');
     } catch (error) {
       console.error('Erro ao enviar mensagem:', error);
     }
   };
-  
 
   const handleEncerrarConversa = async () => {
     try {
@@ -99,7 +91,7 @@ export default function ChatCliente({ params }) {
       };
 
       // Atualiza as mensagens no servidor usando o método PUT
-      await fetch(`http://localhost:3001/salas/${idSala}`, {
+      await fetch(`http://localhost:3001/salas/${sala.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(salaEncerrada),
