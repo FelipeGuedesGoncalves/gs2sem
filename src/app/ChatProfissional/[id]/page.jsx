@@ -52,33 +52,47 @@ export default function ChatProfissional({ params }) {
   }, []);
 
 
-  const handleEnviarMensagem = async (event) => {
-    event.preventDefault();
-      try {
-          // Cria um objeto representando a nova mensagem
-          const novaMensagemObj = {
-              id: mensagens.length + 1, // Gera um ID único para a nova mensagem
-              conteudo: novaMensagem,
-              rm_profissional: profissional.rm_profissional,
-          };
+// ... (código anterior)
 
-          // Atualiza a variável localmente com a nova mensagem
-          const mensagensAtualizadas = [...mensagens, novaMensagemObj];
-          setMensagens(mensagensAtualizadas);
+const handleEnviarMensagem = async () => {
+  try {
+      // Cria um objeto representando a nova mensagem
+      const novaMensagemObj = {
+          id: mensagens.length + 1, // Gera um ID único para a nova mensagem
+          conteudo: novaMensagem,
+          rm_profissional: profissional.rm_profissional,
+      };
 
-          // Atualiza as mensagens no servidor usando o método PUT
-          await fetch(`http://localhost:3001/salas/${idSala}`, {
-              method: 'PUT',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ mensagens: mensagensAtualizadas }),
-          });
+      // Atualiza a variável localmente com a nova mensagem
+      const mensagensAtualizadas = [...mensagens, novaMensagemObj];
+      setMensagens(mensagensAtualizadas);
 
-          // Limpa a caixa de mensagem após o envio
-          setNovaMensagem('');
-      } catch (error) {
-          console.error('Erro ao enviar mensagem:', error);
-      }
-  };
+      // Extrai informações do loginref da sessionStorage
+      const loginRefInfo = JSON.parse(sessionStorage.getItem('loginprof'));
+
+      // Adiciona as informações do loginref às mensagens
+      const dadosParaPut = {
+          mensagens: mensagensAtualizadas,
+          ...loginRefInfo,
+      };
+
+      // Atualiza as mensagens no servidor usando o método PUT
+      await fetch(`http://localhost:3001/salas/${idSala}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dadosParaPut),
+      });
+
+      // Limpa a caixa de mensagem após o envio
+      setNovaMensagem('');
+  } catch (error) {
+      console.error('Erro ao enviar mensagem:', error);
+  }
+};
+
+// ... (restante do código)
+
+
 
   const renderizarMensagens = () => {
       return mensagens.map((mensagem) => (
