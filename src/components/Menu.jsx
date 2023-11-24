@@ -81,7 +81,7 @@ export default function Menu() {
       {profissional ? (
         // Se houver loginprof na sessionStorage, mostrar apenas Assistência Médica
         <>
-          <Link className="itemNav" href="/ChatProfissional">Assistência Médica</Link>
+          <Link className="itemNav" href={`/ChatProfissional/${profissional.id}`}>Assistência Médica</Link>
           <button className='itemNav' onClick={deslogar}>Sair</button>
         </>
       ) : (
