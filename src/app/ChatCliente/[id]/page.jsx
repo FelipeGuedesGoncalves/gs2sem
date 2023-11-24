@@ -19,14 +19,14 @@ export default function ChatCliente({ params }) {
   useEffect(() => {
     // Obter dados do cliente da sessionStorage
     const clienteData = JSON.parse(sessionStorage.getItem('login'));
-
+  
     if (!clienteData) {
       // Se não houver dados do cliente, você pode redirecionar ou tratar de acordo com seus requisitos
       console.error('Dados do cliente não encontrados na sessionStorage');
       return;
     }
     setCliente(clienteData);
-
+  
     // Consultar o banco de dados para encontrar uma sala com mensagens vazias
     fetch(`http://localhost:3001/salas`, {
       method: 'GET',
@@ -39,14 +39,26 @@ export default function ChatCliente({ params }) {
           setSala(salaDisponivel);
           setMensagens(salaDisponivel.mensagens);
         } else {
-          // Caso não encontre uma sala vazia, você pode lidar com isso de acordo com seus requisitos
-          console.error('Todos os profissionais estão ocupados no momento. Aguarde um instante.');
+          // Caso não encontre uma sala vazia, verificar salas com mensagens do cliente
+          const salaComMensagensDoCliente = salas.find(
+            (sala) => sala.mensagens.some((mensagem) => mensagem.email === clienteData.email)
+          );
+  
+          if (salaComMensagensDoCliente) {
+            // Se encontrar uma sala com mensagens do cliente, o cliente pode usar a sala
+            setSala(salaComMensagensDoCliente);
+            setMensagens(salaComMensagensDoCliente.mensagens);
+          } else {
+            // Caso não encontre uma sala com mensagens do cliente, você pode lidar com isso de acordo com seus requisitos
+            console.error('Todos os profissionais estão ocupados no momento. Aguarde um instante.');
+          }
         }
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
+  
 
   const handleEnviarMensagem = async (e) => {
     e.preventDefault();
@@ -69,7 +81,7 @@ export default function ChatCliente({ params }) {
       };
 
       // Atualiza as mensagens no servidor usando o método PUT
-      await fetch(`http://localhost:3001/salas/${sala.id}`, {
+      await fetch(`http://localhost:3001/salas/${idSala}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(dadosParaPut),
@@ -91,7 +103,7 @@ export default function ChatCliente({ params }) {
       };
 
       // Atualiza as mensagens no servidor usando o método PUT
-      await fetch(`http://localhost:3001/salas/${sala.id}`, {
+      await fetch(`http://localhost:3001/salas/${idSala}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(salaEncerrada),
