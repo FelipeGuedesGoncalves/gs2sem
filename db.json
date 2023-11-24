@@ -9,8 +9,6 @@
       "id": 1
     }
   ],
-
-
   "profissionais": [
     {
       "nome_profissional": "Fulano",
@@ -20,16 +18,8 @@
       "id": 1
     }
   ],
-
-
   "salas": [
     {
-      "nome_profissional": "Fulano",
-      "rm_profissional": "RM1",
-      "senha": "Senha1",
-      "foto": "exemplo",
-      "nome_sala" : "sala_fulano",
-      "id": 1,
       "mensagens": [
         {
           "email": "felipeguedes@gmail.com",
@@ -45,13 +35,31 @@
           "email": "felipeguedes@gmail.com",
           "conteudo": "quero saber como me cuidar",
           "id": 3
+        },
+        {
+          "id": 4,
+          "conteudo": "oi",
+          "rm_profissional": "RM1"
+        },
+        {
+          "id": 5,
+          "conteudo": "oi",
+          "rm_profissional": "RM1"
+        },
+        {
+          "id": 6,
+          "conteudo": "iae",
+          "rm_profissional": "RM1"
+        },
+        {
+          "id": 7,
+          "conteudo": "tudo bem?",
+          "rm_profissional": "RM1"
         }
-        
-      ]
+      ],
+      "id": 1
     }
   ],
-
-
   "clientes": [
     {
       "nm_completo": "Felipe guuedes",
