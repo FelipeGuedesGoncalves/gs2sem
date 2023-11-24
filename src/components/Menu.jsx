@@ -110,7 +110,7 @@ export default function Menu() {
             )}
           </div>
           <Link className="itemNav" href={'/Doacao/0'}>Doação</Link>
-          <Link className="itemNav" href="/Chat">Assistência Médica</Link>
+          <Link className="itemNav" href={`/ChatCliente/${usuario ? usuario.id : ''}`}>Assistência Médica</Link>
           <Link className="itemNav" href={user ? `/Perfil/${usuario ? usuario.id : ''}` : '/Login'}>{user ? "Meu Perfil" : 'Entrar'}</Link>
         </>
       )}

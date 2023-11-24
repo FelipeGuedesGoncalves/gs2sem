@@ -25,7 +25,18 @@
       "senha": "Senha1",
       "foto": "exemplo",
       "id": 1,
-      "mensagens": []
+      "mensagens": [
+        {
+          "id": 1,
+          "conteudo": "oi",
+          "email": "felipeguedes@gmail.com"
+        },
+        {
+          "id": 2,
+          "conteudo": "tarde",
+          "email": "felipeguedes@gmail.com"
+        }
+      ]
     }
   ],
   "clientes": [
