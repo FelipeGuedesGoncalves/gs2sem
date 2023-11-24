@@ -20,48 +20,12 @@
   ],
   "salas": [
     {
-      "mensagens": [
-        {
-          "email": "felipeguedes@gmail.com",
-          "conteudo": "Olá, tenho uma dúvida",
-          "id": 1
-        },
-        {
-          "rm_profissional": "RM1",
-          "conteudo": "Olá, como posso ajudar?",
-          "id": 2
-        },
-        {
-          "email": "felipeguedes@gmail.com",
-          "conteudo": "quero saber como me cuidar",
-          "id": 3
-        },
-        {
-          "id": 4,
-          "conteudo": "oi",
-          "rm_profissional": "RM1"
-        },
-        {
-          "id": 5,
-          "conteudo": "oi",
-          "rm_profissional": "RM1"
-        },
-        {
-          "id": 6,
-          "conteudo": "opa",
-          "rm_profissional": "RM1"
-        },
-        {
-          "id": 7,
-          "conteudo": "então",
-          "rm_profissional": "RM1"
-        }
-      ],
       "nome_profissional": "Fulano",
       "rm_profissional": "RM1",
       "senha": "Senha1",
       "foto": "exemplo",
-      "id": 1
+      "id": 1,
+      "mensagens": []
     }
   ],
   "clientes": [
