@@ -6,7 +6,7 @@ const philo = Philosopher({
     weight: ['400', '700']
 });
 
-export default function Home() {
+export default function Chat() {
     return (
         <main className='mainChat'>
             <h1 className={philo.className} id='titulo'>Assistência Médica</h1>

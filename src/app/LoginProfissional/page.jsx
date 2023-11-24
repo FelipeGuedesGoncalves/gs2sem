@@ -38,7 +38,7 @@ export default function Login() {
             // Armazena todas as informações do profissional na sessionStorage
             sessionStorage.setItem("loginprof", JSON.stringify(profissionalEncontrado));
             // Redireciona para a página de chat com o ID do profissional
-            window.location = "/Chat";
+            window.location = "/ChatProfissional";
         } else {
             alert("RM profissional ou senha incorretos. Tente novamente.");
         }

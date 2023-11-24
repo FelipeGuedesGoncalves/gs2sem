@@ -26,9 +26,9 @@ export default function Menu() {
 
   // ===== LÓGICA PARA LOGIN DE USUÁRIO =====
   const [user, setUser] = useState('')
-  useEffect(()=>{
+  useEffect(() => {
     setUser(JSON.parse(sessionStorage.getItem('login')))
-  },[])
+  }, [])
   const usuario = user ? clientes.find(cliente => cliente.email === user.email && cliente.senha === user.senha) : null;
 
   // ===== LÓGICA PARA LOGIN DE PROFISSIONAIS =====
@@ -37,7 +37,7 @@ export default function Menu() {
     setProfissional(JSON.parse(sessionStorage.getItem('loginprof')));
   }, []);
 
-  const deslogar = ()=> {
+  const deslogar = () => {
     sessionStorage.removeItem("loginprof")
     window.location = "/"
     setUser("")
@@ -67,6 +67,7 @@ export default function Menu() {
 
   return (
     <nav id='nav' className={outfit.className}>
+
       <Link className="homeLogoLink" href="/">
         <Image
           src="/babycarelogowhite.png"
@@ -76,38 +77,38 @@ export default function Menu() {
         />
       </Link>
 
-      <Link className="itemNav" href='/'>Página Inicial</Link>
-
-      <div className="itemNav" onClick={toggleDropdown} ref={dropdownRef}>
-        Informações Preciosas
-        {isDropdownOpen && (
-          <ul id="dropdown" className="dropdown">
-            <li>
-              <Link className="info" href="/Prenatal">Cuidados Pré-natais</Link>
-            </li>
-            <li>
-              <Link className="info" href="/Materno">Cuidados Maternos</Link>
-            </li>
-            <li>
-              <Link className="info" href="/Nutri">Nutrição Infantil</Link>
-            </li>
-            <li>
-              <Link className="info" href="/Posparto">Cuidados Pós-parto</Link>
-            </li>
-          </ul>
-        )}
-      </div>
-
       {/* Adicionando lógica para login de profissionais */}
       {profissional ? (
         // Se houver loginprof na sessionStorage, mostrar apenas Assistência Médica
         <>
-          <Link className="itemNav" href="/Chat">Assistência Médica</Link>
+          <Link className="itemNav" href="/ChatProfissional">Assistência Médica</Link>
           <button className='itemNav' onClick={deslogar}>Sair</button>
         </>
       ) : (
         // Se não houver loginprof, mostrar as opções padrão
         <>
+
+          <Link className="itemNav" href='/'>Página Inicial</Link>
+
+          <div className="itemNav" onClick={toggleDropdown} ref={dropdownRef}>
+            Informações Preciosas
+            {isDropdownOpen && (
+              <ul id="dropdown" className="dropdown">
+                <li>
+                  <Link className="info" href="/Prenatal">Cuidados Pré-natais</Link>
+                </li>
+                <li>
+                  <Link className="info" href="/Materno">Cuidados Maternos</Link>
+                </li>
+                <li>
+                  <Link className="info" href="/Nutri">Nutrição Infantil</Link>
+                </li>
+                <li>
+                  <Link className="info" href="/Posparto">Cuidados Pós-parto</Link>
+                </li>
+              </ul>
+            )}
+          </div>
           <Link className="itemNav" href={'/Doacao/0'}>Doação</Link>
           <Link className="itemNav" href="/Chat">Assistência Médica</Link>
           <Link className="itemNav" href={user ? `/Perfil/${usuario ? usuario.id : ''}` : '/Login'}>{user ? "Meu Perfil" : 'Entrar'}</Link>

@@ -9,6 +9,8 @@
       "id": 1
     }
   ],
+
+
   "profissionais": [
     {
       "nome_profissional": "Fulano",
@@ -18,9 +20,46 @@
       "id": 1
     }
   ],
+
+
+  "salas": [
+    {
+      "nome_profissional": "Fulano",
+      "rm_profissional": "RM1",
+      "senha": "Senha1",
+      "foto": "exemplo",
+      "nome_sala" : "sala_fulano",
+      "id": 1,
+      "mensagens": [
+        {
+          "email": "felipeguedes4567@gmail.com",
+          "conteudo": "Olá, tenho uma dúvida",
+          "id": 1
+        },
+        {
+          "rm_profissional": "RM1",
+          "conteudo": "Olá, como posso ajudar?",
+          "id": 2
+        },
+        {
+          "email": "felipeguedes4567@gmail.com",
+          "conteudo": "quero saber como me cuidar",
+          "id": 3
+        },
+        {
+          "email": "felipeguedes4567@gmail.com",
+          "conteudo": "como faço para tratar meu braço?",
+          "id": 4
+        }
+        
+      ]
+    }
+  ],
+
+
   "clientes": [
     {
-      "nm_completo": "Felipe",
+      "nm_completo": "Felipe guuedes",
       "email": "felipeguedes4567@gmail.com",
       "senha": "@2004$2013#",
       "telefone": "1199003289",
@@ -60,30 +99,6 @@
       "telefone": "444444444444444",
       "cpf": "-1",
       "id": 5
-    }
-  ],
-  "conversa1": [
-    {
-      "email": "fulano@gmail.com",
-      "id": 1,
-      "conteudo_msg": "bom dia!"
-    },
-    {
-      "rm_profissional": "2004201",
-      "id": 2,
-      "conteudo_msg": "bom dia senhora"
-    }
-  ],
-  "conversa2": [
-    {
-      "email": "ciclano4567@gmail.com",
-      "id": 1,
-      "conteudo_msg": "bom dia, dr."
-    },
-    {
-      "rm_profissional": "1234432",
-      "id": 2,
-      "conteudo_msg": "bom dia tudo bem?"
     }
   ]
 }
